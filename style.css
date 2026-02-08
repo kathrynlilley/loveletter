@@ -41,17 +41,20 @@ body {
 }
 
 .letter-window {
-    width: min(90vw, 700px);
-    height: min(80vh, 450px);
+    width: min(90vw, 720px);
+    height: 420px;
 
-    padding: 60px 20px 20px;
+    padding: 40px 20px;
+    box-sizing: border-box;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 12px;
 
     background-image: url("window.png");
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
 
@@ -62,6 +65,7 @@ body {
     opacity: 0;
     transition: transform 0.5s ease, opacity 0.5s ease;
 }
+
 
 
 .letter-window.open {
