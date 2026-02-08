@@ -22,19 +22,33 @@ envelope.addEventListener("click", () => {
 
 // Logic to move the NO btn
 
-noBtn.addEventListener("mouseover", () => {
+let noX = 0;
+let noY = 0;
+
+noBtn.style.position = "fixed";
+
+noBtn.addEventListener("mouseover", (e) => {
     const btnRect = noBtn.getBoundingClientRect();
 
+    const moveDistance = 120; // how far it jumps
+
+    // direction away from mouse
+    const dirX = btnRect.left + btnRect.width / 2 < e.clientX ? -1 : 1;
+    const dirY = btnRect.top + btnRect.height / 2 < e.clientY ? -1 : 1;
+
+    noX += dirX * moveDistance;
+    noY += dirY * moveDistance;
+
+    // clamp to viewport
     const padding = 20;
     const maxX = window.innerWidth - btnRect.width - padding;
     const maxY = window.innerHeight - btnRect.height - padding;
 
-    const newX = Math.random() * maxX;
-    const newY = Math.random() * maxY;
+    noX = Math.max(padding, Math.min(noX, maxX));
+    noY = Math.max(padding, Math.min(noY, maxY));
 
-    noBtn.style.position = "fixed";
-    noBtn.style.left = `${newX}px`;
-    noBtn.style.top = `${newY}px`;
+    noBtn.style.left = `${noX}px`;
+    noBtn.style.top = `${noY}px`;
 });
 
 // Logic to make YES btn to grow
